@@ -1,21 +1,126 @@
 from tkinter import *
 YELLOW = "#f7f5dd"
+STANDARD_FONT = ("Aerial", 25 , "bold")
+
+def details(widget):
+    widget.destroy()
+    detail = Tk()
+    detail.title("Enter Details")
+    detail.config(height=500, width=500, padx=100, pady=50, bg=YELLOW)
+
+    lable_name = Label()
+    lable_name.config(text="Name",font=STANDARD_FONT)
+    lable_name.grid(row=1, column=1)
+
+    entry_name = Entry()
+    entry_name.config()
+    entry_name.grid(row=1, column=2)
+
+    lable_mail = Label()
+    lable_mail.config(text="Email", font=STANDARD_FONT)
+    lable_mail.grid(row=2, column=1)
+
+    entry_mail = Entry()
+    entry_mail.config()
+    entry_mail.grid(row=2, column=2)
+
+    lable_age = Label()
+    lable_age.config(text="Age", font=STANDARD_FONT)
+    lable_age.grid(row=3, column=1)
+
+    entry_age = Entry()
+    entry_age.config()
+    entry_age.grid(row=3, column=2)
+
+    lable_gender = Label()
+    lable_gender.config(text="Gender", font=STANDARD_FONT)
+    lable_gender.grid(row=4, column=1)
+
+    entry_gender = Entry()
+    entry_gender.config()
+    entry_gender.grid(row=4, column=2)
+
+    lable_married = Label()
+    lable_married.config(text="Marital Status", font=STANDARD_FONT)
+    lable_married.grid(row=5, column=1)
+
+    entry_married = Entry()
+    entry_married.config()
+    entry_married.grid(row=5, column=2)
+
+    lable_salary = Label()
+    lable_salary.config(text="Salary", font=STANDARD_FONT)
+    lable_salary.grid(row=6, column=1)
+
+    entry_salary = Entry()
+    entry_salary.config()
+    entry_salary.grid(row=6, column=2)
+    
+    end_page = Button()
+    end_page.config(text = "Submit")
+
+def insert_detail():
+
+    window.destroy()
+    window_detail = Tk()
+    window_detail.title("Login")
+    window_detail.config(height=500, width=500)
+    window_detail.config(padx=100, pady=50, bg=YELLOW)
+
+    lable_usnm = Label()
+    lable_usnm.config(text="Username", font=STANDARD_FONT)
+    lable_usnm.grid(row=1, column=1)
+
+    entry_usnm = Entry()
+    entry_usnm.config()
+    entry_usnm.grid(row=1, column=3)
+
+    lable_mail = Label()
+    lable_mail.config(text="Email", font=STANDARD_FONT)
+    lable_mail.grid(row=2, column=1)
+
+    entry_mail = Entry()
+    entry_mail.config()
+    entry_mail.grid(row =2 , column = 3)
+
+    lable_pass = Label()
+    lable_pass.config(text = "Password",font=STANDARD_FONT)
+    lable_pass.grid(row = 3 , column = 1)
+
+    entry_pass = Entry()
+    entry_pass.config()
+    entry_pass.grid(row =3 , column = 3)
+
+    lable_b1 = Label()
+    lable_b1.grid(row = 4, column = 1)
+
+    end_page = Button()
+    end_page.config(text="Login", command=lambda : details(window_detail))
+    end_page.grid(row = 5 , column = 2)
+
 
 window = Tk()
 window.title("FINO HElP")
 window.config(height=500 , width=500)
 window.config(padx=100 , pady=50, bg=YELLOW)
 
-canvas_logo = Canvas(width=500 , height=500, bg=YELLOW, highlightthickness=0)
+bg_img = PhotoImage(file = "background image.png")
+
+canvas_logo = Canvas(width=500 , height=400, bg=YELLOW, highlightthickness=0)
 logo_image = PhotoImage(file="LOGO.png")
-canvas_logo.create_image(225,225, image=logo_image)
+canvas_logo.create_image(225,200, image=logo_image)
 canvas_logo.grid(row = 1 , column = 1)
 
+lable_intro = Label()
+lable_intro.config(text = "Are you concern about your financial future? \n"
+                          "Don’t know how to manage your financial life? \n"
+                          "Then we are here the Fino Help team with our amazing app FNNO HELP.")
+lable_intro.grid(row = 2 , column = 1)
+
 button_start = Button()
-button_start.config(text="Let's GO")
-button_start.grid(row = 2 , column = 1)
+button_start.config(text="Lets start", command=insert_detail)
+button_start.grid(row = 3 , column = 1)
 
 
 
 window.mainloop()
-
