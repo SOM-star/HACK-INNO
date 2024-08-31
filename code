@@ -1,0 +1,9 @@
+from tkinter import *
+YELLOW = "#f7f5dd"
+
+window = Tk()
+window.title("FINO HElP")
+window.config(height=500 , width=500)
+window.config(padx=100 , pady=50, bg=YELLOW)
+
+window.mainloop()
