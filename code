@@ -1,6 +1,91 @@
 from tkinter import *
+import monthly_expenses as monexp
+
 YELLOW = "#f7f5dd"
 STANDARD_FONT = ("Aerial", 25 , "bold")
+STANDARD_FONT2 = ("Aerial" , 15 , "bold")
+
+def main_page(widget):
+
+    def entry_value ():
+        saly = entry_salary.get()
+        return saly
+
+    def value_ru():
+        return clicked.get()
+
+    widget.destroy()
+    page = Tk()
+    page.title("Personal Financeing")
+    page.config(padx=100,pady=50,bg=YELLOW)
+
+    lable_title = Label()
+    lable_title.config(text="Your Personal Finance App; FINO HELP", font=("Revue", 25 , "bold"))
+    lable_title.grid(row =1 ,column = 1 , columnspan = 3)
+
+    options = ["Urban", "Rural"]
+    clicked = StringVar(page)
+    drop = OptionMenu(page,clicked, *options)
+    drop.config(font=STANDARD_FONT2)
+    drop.grid(row = 2 , column = 2 )
+
+    entry_salary = Entry()
+    entry_salary.config(font=STANDARD_FONT2)
+    entry_salary.insert(0,"Enter Your Salary")
+    salary = entry_salary.get()
+    entry_salary.grid(row = 3 , column = 2)
+
+    button_p = Button()
+    button_p.config(text = "Plan Future", font=STANDARD_FONT2)
+    button_p.grid(row = 4 , column = 1)
+
+    button_me = Button()
+    button_me.config(text = "Mothly Expanses", font=STANDARD_FONT2, command=lambda : [monthly(widget=page,u_r=value_ru() , salar=entry_value())])
+    button_me.grid(row = 4 , column = 3)
+
+    button_s = Button()
+    button_s.config(text = "Savings", font=STANDARD_FONT2)
+    button_s.grid(row = 5 , column =3)
+
+    button_fg = Button()
+    button_fg.config(text = "Finance Guidance", font=STANDARD_FONT2)
+    button_fg.grid(row = 5 , column =1 )
+
+
+def monthly(widget , u_r , salar):
+    widget.destroy()
+    win_month = Tk()
+    win_month.title("Monthly Expanses")
+    win_month.config(padx=100 , pady=50, bg=YELLOW)
+
+    lable_heading = Label()
+    lable_heading.config(text="Monthly Expenceses", font=("Revue" , 45 , "bold"))
+    lable_heading.grid(row=1 , column = 1 , columnspan = 2)
+
+    lable_s = Label()
+    lable_s.config(text = f"Salary :  {salar}", font=STANDARD_FONT)
+    lable_s.grid(row = 2 , column = 1 , columnspan = 2)
+
+    spread = {}
+
+    if u_r == "Urban":
+        spread = monexp.salary_calculator_urban(int(salar))
+    else:
+        spread = monexp.distribution_of_salary_rural(int(salar))
+
+    row = 3
+    for key,value in spread.items():
+        lable_key = Label(text= f"{key}")
+        lable_key.grid(row = row , column = 1)
+
+        lable_value = Label(text=str(value))
+        lable_value.grid(row = row , column = 2)
+
+        row = row+1
+
+
+
+
 
 def details(widget):
     widget.destroy()
@@ -55,9 +140,10 @@ def details(widget):
     entry_salary = Entry()
     entry_salary.config()
     entry_salary.grid(row=6, column=2)
-    
+
     end_page = Button()
-    end_page.config(text = "Submit")
+    end_page.config(text = "Submit",command=lambda : main_page(detail))
+    end_page.grid(row = 7 , column = 2)
 
 def insert_detail():
 
@@ -100,7 +186,7 @@ def insert_detail():
 
 
 window = Tk()
-window.title("FINO HElP")
+window.title("FINO HELP")
 window.config(height=500 , width=500)
 window.config(padx=100 , pady=50, bg=YELLOW)
 
