@@ -141,7 +141,7 @@ def future_plan(widget,salar):
         t = enter_t.get()
         mon_e = enter_exp.get()
 
-        monthly_saving = Retier_funds(time=t, monthly_exp=mon_e, salary=salary)
+        monthly_saving = Retier_funds(time=int(t), monthly_exp=int(mon_e), salary=int(salary))
         monthly_saving = round(monthly_saving)
         messagebox.showinfo("Savings", f"You need to save {monthly_saving} per month to reach your target in {t} years")
 
